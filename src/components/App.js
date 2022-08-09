@@ -45,7 +45,7 @@ export default function App() {
 
   return (
 
-    <div class="body">
+    <div className="body">
       <ImagePopup card={selectedCard} onClose={closeAllPopup} />
 
       <PopupWithForm
@@ -55,29 +55,29 @@ export default function App() {
         onClose={closeAllPopup}
         buttonText="Create"
       >
-        <label class="popup__label">
+        <label className="popup__label">
           <input
             type="text"
             name="inputTitle"
             id="card-title"
-            class="popup__input_type_first popup__input"
+            className="popup__input_type_first popup__input"
             placeholder="Your place"
             minLength="1"
             maxLength="30"
             required
           />
-          <p class="popup__error" id="card-title-error"></p>
+          <p className="popup__error" id="card-title-error"></p>
         </label>
-        <label class="popup__label">
+        <label className="popup__label">
           <input
             type="url"
             name="inputLink"
-            class=" popup__input_type_second popup__input"
+            className=" popup__input_type_second popup__input"
             id="card-link"
             placeholder="Your image link"
             required
           />
-          <p class="popup__error" id="card-link-error"></p>
+          <p className="popup__error" id="card-link-error"></p>
         </label>
       </PopupWithForm>
 
@@ -88,31 +88,31 @@ export default function App() {
         onClose={closeAllPopup}
         buttonText="Submit"
       >
-        <label class="popup__label">
+        <label className="popup__label">
           <input
             type="text"
             name="inputName"
             id="owner-name"
-            class="popup__input_type_first popup__input"
+            className="popup__input_type_first popup__input"
             placeholder="Your name"
             minLength="2"
             maxLength="40"
             required
           />
-          <p class="popup__error" id="card-title-error"></p>
+          <p className="popup__error" id="card-title-error"></p>
         </label>
-        <label class="popup__label">
+        <label className="popup__label">
           <input
             type="text"
             name="inputCareer"
-            class=" popup__input_type_second popup__input"
+            className=" popup__input_type_second popup__input"
             id="owner-career"
             placeholder="Your Career"
             minLength="2"
             maxLength="200"
             required
           />
-          <p class="popup__error" id="card-link-error"></p>
+          <p className="popup__error" id="card-link-error"></p>
         </label>
       </PopupWithForm>
 
@@ -124,16 +124,16 @@ export default function App() {
         buttonText="Submit"
       >
 
-        <label class="popup__label">
+        <label className="popup__label">
           <input
             type="url"
             name="avatar"
-            class=" popup__input_type_second popup__input"
+            className=" popup__input_type_second popup__input"
             id="avatar-link"
             placeholder="Your link URL"
             required
           />
-          <p class="popup__error" id="card-link-error"></p>
+          <p className="popup__error" id="card-link-error"></p>
         </label>
       </PopupWithForm>
 
@@ -148,7 +148,7 @@ export default function App() {
 
 
 
-      <div class='page'>
+      <div className='page'>
         <Header />
         <Main
           onEditAvatarClick={handleEditAvatarPopup}

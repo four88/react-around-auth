@@ -36,28 +36,28 @@ function Main(props) {
   return (
     <main>
 
-      <section class="profile">
-        <div class="profile__img-wrap" onClick={props.onEditAvatarClick}>
-          <div class="profile__img-edit"></div>
+      <section className="profile">
+        <div className="profile__img-wrap" onClick={props.onEditAvatarClick}>
+          <div className="profile__img-edit"></div>
           <img
             src={userAvatar}
             id="image-profile"
             alt="profile img"
-            class="profile__img"
+            className="profile__img"
           />
 
         </div>
-        <div class="profile__info">
-          <div class="profile__info-wrap">
-            <h1 class="profile__info-name">{userName}</h1>
-            <button class="profile__button-edit" type="button" onClick={props.onEditProfileClick}></button>
-            <p class="profile__info-career">{userAbout}</p>
+        <div className="profile__info">
+          <div className="profile__info-wrap">
+            <h1 className="profile__info-name">{userName}</h1>
+            <button className="profile__button-edit" type="button" onClick={props.onEditProfileClick}></button>
+            <p className="profile__info-career">{userAbout}</p>
           </div>
-          <button class="profile__button profile__button-add" type="button" onClick={props.onAddPlaceClick}></button>
+          <button className="profile__button profile__button-add" type="button" onClick={props.onAddPlaceClick}></button>
         </div>
       </section>
 
-      <section class="elements">
+      <section className="elements">
         {cardInfo.map((card) => {
           return <Card key={card._id} card={card} onClick={props.onCardClick} onOpenDeleteClick={props.onOpenDeleteClick} />
         })}

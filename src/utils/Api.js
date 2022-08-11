@@ -73,23 +73,18 @@ export default class Api {
   }
 
   // Add and Remove Likes
-  updateLike(LikeButtonIsActive, cardId) {
-    if (LikeButtonIsActive) {
-      //unlike
-      return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-        method: "DELETE",
-        headers: this._headers
-      })
-        .then(res => this._checkResponse(res));
-    }
-    else {
-      //like 
-      return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-        method: "PUT",
-        headers: this._headers
-      })
-        .then(res => this._checkResponse(res));
-    }
+  changeLikeCardStatus(cardId, isLiked) {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      headers: this._headers,
+      method: isLiked ? "DELETE" : "PUT",
+    })
+      .then((res) =>
+        res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
+      )
+      .catch((err) => {
+        console.log(err);
+      });
   }
+
 
 }

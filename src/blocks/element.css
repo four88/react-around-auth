@@ -67,7 +67,6 @@
     background-position: center;
     background-repeat: no-repeat;
     opacity:1;
-
 }
 
 .element__icon{
@@ -81,6 +80,7 @@
     flex-direction: column;
     align-items: center;
 }
+
 .element__like-counter{
   width: 9px;
   height: 13px;

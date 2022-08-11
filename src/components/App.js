@@ -7,7 +7,7 @@ import EditAvatarPopup from './EditAvatarPopup'
 import AddPlacePopup from './AddPlacePopup'
 import ImagePopup from './ImagePopup'
 import { CurrentUserContext } from '../contexts/CurrentUserContext'
-import { api } from '../utils/api'
+import Api from '../utils/api'
 
 export default function App() {
 
@@ -23,7 +23,7 @@ export default function App() {
   const [currentUser, setCurrentUser] = useState({})
 
   //useEffect to fetch api data of user and set to CurrentUserContext value(currentUser)
-  const api = new api({
+  const api = new Api({
     baseUrl: "https://around.nomoreparties.co/v1/group-12",
     headers: {
       authorization: "b8628092-ca99-4978-bdb3-720edea9284d",

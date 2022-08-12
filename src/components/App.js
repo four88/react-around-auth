@@ -7,7 +7,7 @@ import EditAvatarPopup from './EditAvatarPopup'
 import AddPlacePopup from './AddPlacePopup'
 import ImagePopup from './ImagePopup'
 import { CurrentUserContext } from '../contexts/CurrentUserContext'
-import Api from '../utils/api'
+import Api from '../utils/api.js'
 
 export default function App() {
 

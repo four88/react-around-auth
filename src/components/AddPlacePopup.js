@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import PopupWithForm from './PopupWithForm'
 
 export default function AddPlacePopup(props) {
@@ -20,7 +20,18 @@ export default function AddPlacePopup(props) {
       title,
       link
     })
+
   }
+
+  useEffect(() => {
+    if (props.isOpen) {
+      // reset name
+      setTitle("");
+      // reset link
+      setLink("")
+    }
+  }, [props.isOpen])
+
 
   return (
 
@@ -37,6 +48,7 @@ export default function AddPlacePopup(props) {
           type="text"
           name="inputTitle"
           id="card-title"
+          value={title}
           className="popup__input_type_first popup__input"
           placeholder="Your place"
           minLength="1"
@@ -52,6 +64,7 @@ export default function AddPlacePopup(props) {
           name="inputLink"
           className=" popup__input_type_second popup__input"
           id="card-link"
+          value={link}
           placeholder="Your image link"
           onChange={handleLinkChange}
           required

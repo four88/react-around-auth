@@ -12,8 +12,8 @@ export default function EditProfilePopup(props) {
   // After loading the current user from the API
   // their data will be used in managed components.
   useEffect(() => {
-    setName(currentUser.name);
-    setDescription(currentUser.about);
+    setName(currentUser.name || '');
+    setDescription(currentUser.about || '');
   }, [currentUser]);
 
   const handleNameChange = (evt) => {
@@ -50,7 +50,7 @@ export default function EditProfilePopup(props) {
           type="text"
           name="inputName"
           id="owner-name"
-          value={name || ""}
+          value={name}
           className="popup__input_type_first popup__input"
           placeholder="Your name"
           minLength="2"
@@ -64,7 +64,7 @@ export default function EditProfilePopup(props) {
         <input
           type="text"
           name="inputCareer"
-          value={description || ""}
+          value={description}
           className=" popup__input_type_second popup__input"
           id="owner-career"
           placeholder="Your Career"

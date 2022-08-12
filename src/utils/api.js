@@ -85,4 +85,15 @@ class Api {
       });
   }
 }
-export default Api
+
+
+const api = new Api({
+  baseUrl: "https://around.nomoreparties.co/v1/group-12",
+  headers: {
+    authorization: "b8628092-ca99-4978-bdb3-720edea9284d",
+    "Content-Type": "application/json",
+  }
+});
+
+
+export default api

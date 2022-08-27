@@ -4,7 +4,7 @@
     font-size: 18px;
     line-height: 22px;
     color: #545454;
-
+  width: 100%;
 }
 
 .footer__copyright{
@@ -12,6 +12,7 @@
     font-size: 1.125rem;
     line-height: 1.375rem;
     color: #545454;
+   
 }
 
 

@@ -1,13 +1,18 @@
-import React, { useState, useEffect } from 'react'
-import Header from './Header'
-import Footer from './Footer'
-import Main from './Main'
-import EditProfilePopup from './EditProfilePopup'
-import EditAvatarPopup from './EditAvatarPopup'
-import AddPlacePopup from './AddPlacePopup'
-import ImagePopup from './ImagePopup'
-import { CurrentUserContext } from '../contexts/CurrentUserContext'
-import api from '../utils/api.js'
+import React, { useState, useEffect } from 'react';
+import Header from './Header';
+import Footer from './Footer';
+import Main from './Main';
+import EditProfilePopup from './EditProfilePopup';
+import EditAvatarPopup from './EditAvatarPopup';
+import AddPlacePopup from './AddPlacePopup';
+import ImagePopup from './ImagePopup';
+import Login from './Login';
+import Register from './Register';
+import ProtectedRoute from './ProtectedRoute';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import { Switch, Route } from 'react-router-dom';
+import api from '../utils/api.js';
+import { wait } from '@testing-library/user-event/dist/utils';
 
 export default function App() {
 
@@ -22,6 +27,14 @@ export default function App() {
   // State for store context
   const [currentUser, setCurrentUser] = useState({})
 
+  // for login and register system 
+  // check user is login
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [account, setAccount] = useState({
+    email: "",
+    password: ""
+  });
+
   //useEffect to fetch api data of user and set to CurrentUserContext value(currentUser)
 
   useEffect(() => {
@@ -35,6 +48,7 @@ export default function App() {
     })
       .catch(err => console.log(err))
   }, [])
+
 
   const handleEditPropfilePopup = () => {
     setIsEditProfilePopupOpen(!isEditProfilePopupOpen)
@@ -111,14 +125,41 @@ export default function App() {
       })
       .catch(err => console.log(err))
   }
+
+  // handle registraion funciton
+  const handleChange = (evt) => {
+    const { name, value } = evt.target
+    setAccount({
+      ...account,
+      [name]: value
+    })
+    console.log(account)
+  }
+
+
+  const handleLoginSubmit = (evt) => {
+    evt.preventDefault();
+    console.log(account)
+    // use auth.authentication below
+    // then set state to null
+  }
+
+
+  const handleRegisterSubmit = (evt) => {
+    evt.preventDefault();
+    //use aute.register below
+    // then set state to null
+  }
+
+
   return (
+
     <CurrentUserContext.Provider value={currentUser}>
       <div className="body">
         <ImagePopup
           card={selectedCard}
           onClose={closeAllPopup}
         />
-
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopup}
@@ -138,21 +179,47 @@ export default function App() {
 
 
         <div className='page'>
-          <Header />
-          <Main
-            cardInfo={cards}
-            onEditAvatarClick={handleEditAvatarPopup}
-            onEditProfileClick={handleEditPropfilePopup}
-            onAddPlaceClick={handleAddPlacePopup}
-            onCardClick={handleImagePopup}
-            onOpenDeleteClick={handleDeleteConfirmPopup}
-            onCardLike={handleCardLike}
-            onCardDelete={handleDeleteCard}
-          />
+
+          <Switch>
+            <Route path='/signin'>
+              <Header
+                linkTitle="Sign up"
+                toPath="/signup"
+              />
+              <Login
+                account={account}
+                handleChange={handleChange}
+                handleLoginSubmit={handleLoginSubmit}
+              />
+            </Route>
+            <Route path='/signup'>
+              <Header
+                linkTitle="Log in"
+                toPath="/signin"
+              />
+              <Register
+                account={account}
+                handleChange={handleChange}
+                handleRegisterSubmit={''}
+              />
+            </Route>
+            <ProtectedRoute path="/" isLoggedIn={false} toPath="/signin" >
+              <Main
+                cardInfo={cards}
+                onEditAvatarClick={handleEditAvatarPopup}
+                onEditProfileClick={handleEditPropfilePopup}
+                onAddPlaceClick={handleAddPlacePopup}
+                onCardClick={handleImagePopup}
+                onOpenDeleteClick={handleDeleteConfirmPopup}
+                onCardLike={handleCardLike}
+                onCardDelete={handleDeleteCard}
+              />
+            </ProtectedRoute>
+
+          </Switch>
           <Footer />
         </div>
       </div>
-
     </CurrentUserContext.Provider >
 
   )

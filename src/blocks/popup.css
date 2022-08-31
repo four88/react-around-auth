@@ -82,6 +82,10 @@
   width: 100%;
 }
 
+.popup__input{
+  outline: none;
+}
+
 .popup__button-closed {
   z-index: 11;
   height: 40px;

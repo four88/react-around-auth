@@ -9,17 +9,21 @@ import ImagePopup from './ImagePopup';
 import Login from './Login';
 import Register from './Register';
 import ProtectedRoute from './ProtectedRoute';
+import InfoTooltip from './InfoTooltip';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
-import { Switch, Route } from 'react-router-dom';
-import api from '../utils/api.js';
-import { wait } from '@testing-library/user-event/dist/utils';
+import { Switch, Route, useHistory } from 'react-router-dom';
+import api from '../utils/api';
+import * as auth from '../utils/auth'
+import PopupWithForm from './PopupWithForm';
 
 export default function App() {
 
+  const history = useHistory();
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false)
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false)
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false)
   const [isDeleteConfirmPopupOpen, setIsDeleteConfirmPopupOpen] = useState(false)
+  const [isInfoPopupOpen, setInfoPopupOpen] = useState(false)
   const [selectedCard, setSelectedCard] = useState(null)
 
   const [cards, setCards] = useState([])
@@ -48,6 +52,28 @@ export default function App() {
     })
       .catch(err => console.log(err))
   }, [])
+
+
+  // if user already login allow user to pass throught to homepage by checking token
+  useEffect(() => {
+    handleTokenCheck()
+  }, [account.email])
+
+  // handle user token (checking user has token or not )
+  const handleTokenCheck = () => {
+    const token = localStorage.getItem('token');
+
+    auth.checkUserToken(token).then((res) => {
+      console.log(res)
+      if (res) {
+        setAccount({
+          email: res.data.email
+        })
+        setIsLoggedIn(true);
+        history.push('/')
+      }
+    })
+  }
 
 
   const handleEditPropfilePopup = () => {
@@ -127,6 +153,7 @@ export default function App() {
   }
 
   // handle registraion funciton
+  // handle input change
   const handleChange = (evt) => {
     const { name, value } = evt.target
     setAccount({
@@ -136,21 +163,52 @@ export default function App() {
     console.log(account)
   }
 
-
+  // handle submit login form
   const handleLoginSubmit = (evt) => {
     evt.preventDefault();
     console.log(account)
+    if (!account.email || !account.password) {
+      return;
+    }
     // use auth.authentication below
     // then set state to null
+    auth.authorize(account.email, account.password)
+      .then((data) => {
+        if (data.token) {
+          setAccount({
+            email: "",
+            password: ""
+          })
+          setIsLoggedIn(true);
+          history.push('/')
+        }
+      })
   }
 
-
-  const handleRegisterSubmit = (evt) => {
+  // handle register submit
+  const handleRegisterSubmit = (evt,) => {
     evt.preventDefault();
     //use aute.register below
     // then set state to null
+    auth.register(account.email, account.password)
+      .then(() => {
+        setAccount({
+          email: "",
+          password: ""
+        })
+      })
   }
 
+  // logout function 
+  const logout = () => {
+    setIsLoggedIn(false);
+    setAccount({
+      email: "",
+      password: ""
+    })
+    localStorage.removeItem('token')
+    history.push('/signin')
+  }
 
   return (
 
@@ -174,6 +232,13 @@ export default function App() {
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopup}
           onUpdateCard={handleUpdateCard}
+        />
+        <InfoTooltip
+          isOpen={true}
+          srcImg={""}
+          altImg={''}
+          title={"sucess"}
+          onClose={closeAllPopup}
         />
 
 
@@ -200,10 +265,16 @@ export default function App() {
               <Register
                 account={account}
                 handleChange={handleChange}
-                handleRegisterSubmit={''}
+                handleRegisterSubmit={handleRegisterSubmit}
               />
             </Route>
-            <ProtectedRoute path="/" isLoggedIn={false} toPath="/signin" >
+            <ProtectedRoute path="/" isLoggedIn={isLoggedIn} toPath="/signin" >
+              <Header
+                toPath=""
+                emailTitle={account.email}
+                linkTitle="Log out"
+                onClick={logout}
+              />
               <Main
                 cardInfo={cards}
                 onEditAvatarClick={handleEditAvatarPopup}

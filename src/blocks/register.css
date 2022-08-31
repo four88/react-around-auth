@@ -44,6 +44,10 @@
   width: 100%;
 }
 
+.register_login__input:focus{
+  outline: none;
+}
+
 .register_login__input::placeholder{
   color: #CCCCCC;
 }

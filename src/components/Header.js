@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom'
 export default function Header({
   emailTitle,
   toPath,
-  linkTitle
+  linkTitle,
+  onClick
 }) {
   return (
 
@@ -15,7 +16,7 @@ export default function Header({
           <h1 className='header__email'>{emailTitle}</h1>
         </li>
         <li className='header__list'>
-          <Link to={toPath} className='header__link'>{linkTitle}</Link>
+          <Link to={toPath} className='header__link' onClick={onClick}>{linkTitle}</Link>
         </li>
       </ul>
     </header>

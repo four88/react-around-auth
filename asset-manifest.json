@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/react-around-auth/static/css/main.229a48f3.css",
+    "main.js": "/react-around-auth/static/js/main.c39e5e31.js",
+    "static/js/787.b0e40ee8.chunk.js": "/react-around-auth/static/js/787.b0e40ee8.chunk.js",
+    "static/media/Inter-Medium.woff?v=3.12": "/react-around-auth/static/media/Inter-Medium.9534203f443096c3ec9b.woff",
+    "static/media/Inter-Black.woff?v=3.12": "/react-around-auth/static/media/Inter-Black.6f3f8d238cb5ec6a7884.woff",
+    "static/media/Inter-Regular.woff": "/react-around-auth/static/media/Inter-Regular.a252fc44cf11fd602874.woff",
+    "static/media/Inter-Medium.woff2?v=3.12": "/react-around-auth/static/media/Inter-Medium.abc74264e0406c68ea90.woff2",
+    "static/media/Inter-Black.woff2?v=3.12": "/react-around-auth/static/media/Inter-Black.769f5bb9abd2e78ec82b.woff2",
+    "static/media/Inter-Regular.woff2": "/react-around-auth/static/media/Inter-Regular.c8ba52b05a9ef10f4758.woff2",
+    "static/media/falied_icon.png": "/react-around-auth/static/media/falied_icon.f1c9fdfa2d0db4d41167.png",
+    "static/media/icon.svg": "/react-around-auth/static/media/icon.3826c074a1b94b101e38893244f97c31.svg",
+    "index.html": "/react-around-auth/index.html",
+    "static/media/delete_icon.svg": "/react-around-auth/static/media/delete_icon.8cb59aa98088a1653f62.svg",
+    "static/media/active_button.svg": "/react-around-auth/static/media/active_button.226461bd64622361ffb2817e4ceb369b.svg",
+    "static/media/Close_icon.svg": "/react-around-auth/static/media/Close_icon.910c81e7387e24f6f8465a1f68e010c9.svg",
+    "static/media/edited_button.svg": "/react-around-auth/static/media/edited_button.8667ac4a523e8fc42e59.svg",
+    "static/media/edit-avatar.svg": "/react-around-auth/static/media/edit-avatar.a086f758840ae814ecde.svg",
+    "static/media/add_button.svg": "/react-around-auth/static/media/add_button.d86bb2edc2f6eadb96b7.svg",
+    "main.229a48f3.css.map": "/react-around-auth/static/css/main.229a48f3.css.map",
+    "main.c39e5e31.js.map": "/react-around-auth/static/js/main.c39e5e31.js.map",
+    "787.b0e40ee8.chunk.js.map": "/react-around-auth/static/js/787.b0e40ee8.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.229a48f3.css",
+    "static/js/main.c39e5e31.js"
+  ]
+}

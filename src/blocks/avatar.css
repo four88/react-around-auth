@@ -27,19 +27,13 @@
   margin-top: 34px;
 }
 
-
-
 .avatar__input_type_link {
   margin-top: 54px;
 }
 
-
 .avatar__button:hover {
   opacity: 0.8;
 }
-
-
-
 
 @media screen and (max-width: 500px) {
   .avatar__container {
@@ -54,8 +48,6 @@
   .avatar__title {
     font-size: 1.25rem;
   }
-
-
 }
 
 @media screen and (max-width: 350px) {
@@ -72,10 +64,7 @@
     margin-top: 1.563rem;
   }
 
-
   .avatar__input_type_link {
     margin-top: 54px;
   }
-
-
 }

@@ -1,27 +1,25 @@
-import { useRef, useEffect } from 'react'
-import PopupWithForm from './PopupWithForm'
+import { useRef, useEffect } from 'react';
+import PopupWithForm from './PopupWithForm';
 
 export default function EditAvatarPopup(props) {
-
-  const avatarRef = useRef("")
+  const avatarRef = useRef('');
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     props.onUpdateAvatar({
-      avatar: avatarRef.current.value
+      avatar: avatarRef.current.value,
     });
-  }
+  };
 
   useEffect(() => {
     if (props.isOpen) {
-      avatarRef.current.value = ''
+      avatarRef.current.value = '';
     }
-  }, [props.isOpen])
+  }, [props.isOpen]);
 
   return (
-
     <PopupWithForm
-      name='avatar'
+      name="avatar"
       isOpen={props.isOpen}
       title="Change Profile Picture"
       onClose={props.onClose}
@@ -41,7 +39,5 @@ export default function EditAvatarPopup(props) {
         <p className="popup__error" id="card-link-error"></p>
       </label>
     </PopupWithForm>
-
-
-  )
+  );
 }

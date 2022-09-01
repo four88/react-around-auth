@@ -1,12 +1,9 @@
 export const BASE_URL = 'https://register.nomoreparties.co';
 
-
 const checkResponse = (res) => {
   if (res.ok) { return res.json(); }
   return Promise.reject(`Error: ${res.statusText}`);
 };
-
-
 
 export const register = (email, password) => {
   return fetch(`${BASE_URL}/signup`, {
@@ -18,11 +15,8 @@ export const register = (email, password) => {
     body: JSON.stringify({ email, password })
   })
     .then((res) => checkResponse(res))
-    .catch((err) => {
-      return err
-    })
-};
 
+};
 
 export const authorize = (email, password) => {
   return fetch(`${BASE_URL}/signin`, {
@@ -34,12 +28,8 @@ export const authorize = (email, password) => {
   })
     .then((res) => checkResponse(res))
     .then((data) => {
-      if (data.token) {
-        localStorage.setItem('token', data.token);
-        return data
-      }
+      return data
     })
-
 }
 
 export const checkUserToken = (token) => {
@@ -52,7 +42,5 @@ export const checkUserToken = (token) => {
   })
     .then((res) => checkResponse(res)
     )
-    .then((data) => {
-      return data;
-    })
+
 }

@@ -1,7 +1,7 @@
-.info__container{
+.info__container {
   width: 430px;
   height: 330px;
-  background: #FFFFFF;
+  background: #ffffff;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -11,14 +11,13 @@
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
 }
 
-.info__img{
+.info__img {
   width: 120px;
   height: 120px;
   margin: 0;
 }
 
-
-.info__title{
+.info__title {
   max-width: 358px;
   text-align: center;
   font-style: normal;
@@ -29,10 +28,8 @@
   margin-bottom: 0;
 }
 
-.info__button-closed{
+.info__button-closed {
   position: absolute;
   top: 0px;
   right: -40px;
 }
-
-

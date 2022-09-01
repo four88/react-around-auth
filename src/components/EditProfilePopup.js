@@ -1,13 +1,12 @@
-import { useEffect, useState, useContext } from 'react'
-import PopupWithForm from './PopupWithForm'
-import { CurrentUserContext } from '../contexts/CurrentUserContext'
+import { useEffect, useState, useContext } from 'react';
+import PopupWithForm from './PopupWithForm';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 export default function EditProfilePopup(props) {
-
   const currentUser = useContext(CurrentUserContext);
 
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("")
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
 
   // After loading the current user from the API
   // their data will be used in managed components.
@@ -18,11 +17,11 @@ export default function EditProfilePopup(props) {
 
   const handleNameChange = (evt) => {
     setName(evt.target.value);
-  }
+  };
 
   const handleDescriptionChange = (evt) => {
-    setDescription(evt.target.value)
-  }
+    setDescription(evt.target.value);
+  };
 
   const handleSubmit = (evt) => {
     // Prevent the browser from navigation to the form address
@@ -33,12 +32,11 @@ export default function EditProfilePopup(props) {
       name,
       about: description,
     });
-  }
+  };
 
   return (
-
     <PopupWithForm
-      name='edit'
+      name="edit"
       isOpen={props.isOpen}
       title="Edit Profile"
       onClose={props.onClose}
@@ -76,7 +74,5 @@ export default function EditProfilePopup(props) {
         <p className="popup__error" id="card-link-error"></p>
       </label>
     </PopupWithForm>
-
-
-  )
+  );
 }

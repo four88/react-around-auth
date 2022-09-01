@@ -71,7 +71,6 @@ export default function App() {
     const token = localStorage.getItem('token');
 
     auth.checkUserToken(token).then((res) => {
-      console.log(res)
       if (res) {
         setAccount({
           email: res.data.email
@@ -80,6 +79,7 @@ export default function App() {
         history.push('/')
       }
     })
+      .catch((err) => console.log(err))
   }
 
 
@@ -209,13 +209,19 @@ export default function App() {
     //use aute.register below
     // then set state to null
     auth.register(account.email, account.password)
-      .then(() => {
-        setAccount({
-          email: "",
-          password: ""
-        })
-        setIsSuccess(true)
-        setInfoPopupOpen(true)
+      .then((res) => {
+        if (res.ok) {
+          setAccount({
+            email: "",
+            password: ""
+          })
+          setIsSuccess(true)
+          setInfoPopupOpen(true)
+        } else {
+          setIsSuccess(false)
+          setInfoPopupOpen(true)
+        }
+
       })
   }
 
@@ -231,7 +237,6 @@ export default function App() {
   }
 
   return (
-
     <CurrentUserContext.Provider value={currentUser}>
       <div className="body">
         <ImagePopup

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Header from './Header';
+import NavMenu from './NavMenu';
 import Footer from './Footer';
 import Main from './Main';
 import EditProfilePopup from './EditProfilePopup';
@@ -13,8 +14,8 @@ import InfoTooltip from './InfoTooltip';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { Switch, Route, useHistory } from 'react-router-dom';
 import api from '../utils/api';
-import * as auth from '../utils/auth'
-import PopupWithForm from './PopupWithForm';
+import * as auth from '../utils/auth';
+
 
 export default function App() {
 
@@ -39,6 +40,12 @@ export default function App() {
     password: ""
   });
 
+  // for change stage of InfoTooltip
+  const [isSuccess, setIsSuccess] = useState(false)
+
+  // for change state of NavMenu 
+  const [isNavExpand, setIsNavExpand] = useState(false)
+
   //useEffect to fetch api data of user and set to CurrentUserContext value(currentUser)
 
   useEffect(() => {
@@ -56,7 +63,7 @@ export default function App() {
 
   // if user already login allow user to pass throught to homepage by checking token
   useEffect(() => {
-    handleTokenCheck()
+    handleTokenCheck();
   }, [account.email])
 
   // handle user token (checking user has token or not )
@@ -96,6 +103,10 @@ export default function App() {
     setSelectedCard(card)
   }
 
+  const handleNavMenuOpen = () => {
+    setIsNavExpand(!isNavExpand)
+  }
+
 
   const closeAllPopup = () => {
     setIsEditProfilePopupOpen(false)
@@ -103,6 +114,7 @@ export default function App() {
     setIsEditAvatarPopupOpen(false)
     setIsDeleteConfirmPopupOpen(false)
     setSelectedCard(null)
+    setInfoPopupOpen(false)
   }
 
   const handleCardLike = (card) => {
@@ -183,6 +195,12 @@ export default function App() {
           history.push('/')
         }
       })
+      .catch((err) => {
+        if (err) {
+          setIsSuccess(false)
+          setInfoPopupOpen(true)
+        }
+      })
   }
 
   // handle register submit
@@ -196,6 +214,8 @@ export default function App() {
           email: "",
           password: ""
         })
+        setIsSuccess(true)
+        setInfoPopupOpen(true)
       })
   }
 
@@ -234,10 +254,8 @@ export default function App() {
           onUpdateCard={handleUpdateCard}
         />
         <InfoTooltip
-          isOpen={true}
-          srcImg={""}
-          altImg={''}
-          title={"sucess"}
+          isOpen={isInfoPopupOpen}
+          isSuccess={isSuccess}
           onClose={closeAllPopup}
         />
 
@@ -250,6 +268,9 @@ export default function App() {
               <Header
                 linkTitle="Sign up"
                 toPath="/signup"
+                onClick={logout}
+                openNav={handleNavMenuOpen}
+                isNavExpand={isNavExpand}
               />
               <Login
                 account={account}
@@ -261,6 +282,9 @@ export default function App() {
               <Header
                 linkTitle="Log in"
                 toPath="/signin"
+                onClick={logout}
+                openNav={handleNavMenuOpen}
+                isNavExpand={isNavExpand}
               />
               <Register
                 account={account}
@@ -269,11 +293,17 @@ export default function App() {
               />
             </Route>
             <ProtectedRoute path="/" isLoggedIn={isLoggedIn} toPath="/signin" >
+              {isNavExpand && <NavMenu
+                email={account.email}
+                onClickLogout={logout}
+              />}
               <Header
-                toPath=""
+                toPath="/signin"
                 emailTitle={account.email}
                 linkTitle="Log out"
                 onClick={logout}
+                openNav={handleNavMenuOpen}
+                isNavExpand={isNavExpand}
               />
               <Main
                 cardInfo={cards}
@@ -285,10 +315,10 @@ export default function App() {
                 onCardLike={handleCardLike}
                 onCardDelete={handleDeleteCard}
               />
+              <Footer />
             </ProtectedRoute>
 
           </Switch>
-          <Footer />
         </div>
       </div>
     </CurrentUserContext.Provider >

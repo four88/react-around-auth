@@ -40,7 +40,7 @@ export const authorize = (email, password) => {
 
     })
     .catch((err) => {
-      console.log(err)
+      return err
     })
 }
 

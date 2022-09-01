@@ -1,9 +1,10 @@
 
 .register_login__container{
   width: 358px;
+  height: calc(100vh - (120px + 36.5px));
   margin: 0;
   padding: 0;
-  height: 80vh;
+  
 }
 
 .register_login__form{
@@ -69,6 +70,11 @@
   font-weight:400;
   font-size: 1.125rem;
   line-height:1.375rem;
+  transition-duration: 0.3s;
+}
+
+.register_login__submit_button:hover{
+  opacity: 0.85;
 }
 
 .register_login__link{
@@ -80,4 +86,31 @@
   line-height: 1.053rem;
   margin: 0;
   padding: 0;
+  transition-duration: 0.3s;
+}
+
+.register_login__link:hover{
+  opacity: 0.6;
+
+}
+
+@media screen and (max-width: 590px){
+  .register_login__container{
+    max-width: 260px;
+  }
+  
+  .register_login__title{
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .register_login__submit_button{
+    margin-top: 174px;
+    margin-bottom: 20px;
+  }
+
+  .register_login__link{
+    font-size: 12px;
+    line-height: 15px;
+  }
 }

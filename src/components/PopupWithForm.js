@@ -1,9 +1,8 @@
 export default function PopupWithForm(props) {
   return (
     <div
-      className={`popup ${props.name} ${
-        props.isOpen ? 'popup_type_opened' : ''
-      }`}
+      className={`popup ${props.name} ${props.isOpen ? 'popup_type_opened' : ''
+        }`}
     >
       <div className="popup__container">
         <button
@@ -22,7 +21,6 @@ export default function PopupWithForm(props) {
             <button
               type="submit"
               className="popup__button popup__button_save"
-              id="submit-add-button"
             >
               {props.buttonText}
             </button>

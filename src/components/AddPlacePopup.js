@@ -1,42 +1,38 @@
-import { useState, useEffect } from 'react'
-import PopupWithForm from './PopupWithForm'
+import { useState, useEffect } from "react";
+import PopupWithForm from "./PopupWithForm";
 
 export default function AddPlacePopup(props) {
-
-  const [title, setTitle] = useState("")
-  const [link, setLink] = useState("")
+  const [title, setTitle] = useState("");
+  const [link, setLink] = useState("");
 
   const handleTitleChange = (evt) => {
-    setTitle(evt.target.value)
-  }
+    setTitle(evt.target.value);
+  };
   const handleLinkChange = (evt) => {
-    setLink(evt.target.value)
-  }
+    setLink(evt.target.value);
+  };
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
     props.onUpdateCard({
       title,
-      link
-    })
-
-  }
+      link,
+    });
+  };
 
   useEffect(() => {
     if (props.isOpen) {
       // reset name
       setTitle("");
       // reset link
-      setLink("")
+      setLink("");
     }
-  }, [props.isOpen])
-
+  }, [props.isOpen]);
 
   return (
-
     <PopupWithForm
-      name='add'
+      name="add"
       isOpen={props.isOpen}
       title="New Place"
       onClose={props.onClose}
@@ -71,9 +67,6 @@ export default function AddPlacePopup(props) {
         />
         <p className="popup__error" id="card-link-error"></p>
       </label>
-
     </PopupWithForm>
-
-
-  )
+  );
 }

@@ -37,7 +37,7 @@ export default function Register({
           <button
             type="submit"
             className="register_login__submit_button"
-            id="submit-button"
+            id="submit-button-register"
           >
             Sign up
           </button>

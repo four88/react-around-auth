@@ -8,7 +8,7 @@ export default function NavMenu({ email, onClickLogout }) {
           <h1 className="nav__email">{email}</h1>
         </li>
         <li className="nav__list">
-          <Link className="nav__link" onClick={onClickLogout}>
+          <Link className="nav__link" to="/signin" onClick={onClickLogout}>
             Log out
           </Link>
         </li>

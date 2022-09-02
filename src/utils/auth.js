@@ -1,46 +1,39 @@
-export const BASE_URL = 'https://register.nomoreparties.co';
+export const BASE_URL = "https://register.nomoreparties.co";
 
 const checkResponse = (res) => {
-  if (res.ok) { return res.json(); }
+  if (res.ok) {
+    return res.json();
+  }
   return Promise.reject(`Error: ${res.statusText}`);
 };
 
 export const register = (email, password) => {
   return fetch(`${BASE_URL}/signup`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify({ email, password })
-  })
-    .then((res) => checkResponse(res))
-
+    body: JSON.stringify({ email, password }),
+  }).then((res) => checkResponse(res));
 };
 
 export const authorize = (email, password) => {
   return fetch(`${BASE_URL}/signin`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify({ email, password })
-  })
-    .then((res) => checkResponse(res))
-    .then((data) => {
-      return data
-    })
-}
+    body: JSON.stringify({ email, password }),
+  }).then((res) => checkResponse(res));
+};
 
 export const checkUserToken = (token) => {
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    }
-  })
-    .then((res) => checkResponse(res)
-    )
-
-}
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then((res) => checkResponse(res));
+};
